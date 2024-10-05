@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Product</h1>
+
+        {% if error_message %}
+        <p style="color:red;">{{ error_message }}</p>  <!-- Display error message if no product is found -->
+        {% endif %}
+
+        <form method="post" action="{% url 'delete_product' %}">
+            {% csrf_token %}
+            <label for="product_name">Enter the name of the product you want to delete:</label>
+            <input type="text" id="product_name" name="product_name" required>
+            <button type="submit" class="button">Delete</button>
+        </form>
+    </div>
+</body>
+</html>
